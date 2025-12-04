@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sakura 3D Blind Box</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Noto+Serif+JP:wght@400;700&family=Share+Tech+Mono&family=Yuji+Syuku&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              sakura: {
+                50: '#fff0f5',
+                100: '#ffdee9',
+                200: '#ffc2d4',
+                300: '#ffa6c2',
+                400: '#ff80a6',
+                500: '#ff4d88',
+                600: '#e62e6b',
+                800: '#991b45',
+              }
+            },
+            fontFamily: {
+              sans: ['Quicksand', 'sans-serif'],
+              serif: ['"Noto Serif JP"', 'serif'],
+              mono: ['"Share Tech Mono"', 'monospace'],
+              calligraphy: ['"Yuji Syuku"', 'serif'],
+              cursive: ['"Dancing Script"', 'cursive'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Global Reset */
+      body { margin: 0; padding: 0; }
+
+      /* 3D Engine Utilities */
+      .perspective-2000 { perspective: 2000px; }
+      .preserve-3d { transform-style: preserve-3d; }
+      
+      /* Standard Rotation Classes */
+      .rotate-x-90 { transform: rotateX(90deg); }
+      .rotate-y-180 { transform: rotateY(180deg); }
+      
+      /* Animations */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotateX(-15deg) rotateY(25deg); }
+        50% { transform: translateY(-20px) rotateX(-15deg) rotateY(25deg); }
+      }
+      .animate-float { animation: float 6s ease-in-out infinite; }
+
+      @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg) rotateX(-15deg) rotateY(25deg); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg) rotateX(-15deg) rotateY(25deg); }
+        20% { transform: translate(-3px, 0px) rotate(1deg) rotateX(-15deg) rotateY(25deg); }
+        30% { transform: translate(3px, 2px) rotate(0deg) rotateX(-15deg) rotateY(25deg); }
+        40% { transform: translate(1px, -1px) rotate(1deg) rotateX(-15deg) rotateY(25deg); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg) rotateX(-15deg) rotateY(25deg); }
+        60% { transform: translate(-3px, 1px) rotate(0deg) rotateX(-15deg) rotateY(25deg); }
+        70% { transform: translate(3px, 1px) rotate(-1deg) rotateX(-15deg) rotateY(25deg); }
+        80% { transform: translate(-1px, -1px) rotate(1deg) rotateX(-15deg) rotateY(25deg); }
+        90% { transform: translate(1px, 2px) rotate(0deg) rotateX(-15deg) rotateY(25deg); }
+        100% { transform: translate(1px, -2px) rotate(-1deg) rotateX(-15deg) rotateY(25deg); }
+      }
+      .animate-shake-3d { animation: shake 0.5s ease-in-out infinite; }
+
+      @keyframes cardReveal {
+        0% { transform: scale(0.9) translateY(20px); opacity: 0; }
+        100% { transform: scale(1) translateY(0); opacity: 1; }
+      }
+      .animate-card-reveal { animation: cardReveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes cursorFlicker {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+        52% { opacity: 0.2; }
+        54% { opacity: 0.8; }
+      }
+      .animate-cursor-flicker { animation: cursorFlicker 3s infinite; }
+
+      /* Custom Scrollbar for panels */
+      .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.1); border-radius: 20px; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "vite": "https://aistudiocdn.com/vite@^7.2.6"
+  }
+}
+</script>
+</head>
+  <body class="bg-sakura-50 text-slate-800 overflow-hidden">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
